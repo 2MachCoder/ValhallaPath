@@ -14,7 +14,7 @@ namespace UIModules.GameScreen.Scripts
         { 
             Container.Bind<GameScreenUIView>().FromComponentInNewPrefab(gameScreenUIViewPrefab)
                 .UnderTransform(c => c.Container.Resolve<RootCanvas>().transform).AsTransient();
-            Container.Bind<GameScreenController>().AsTransient();
+            Container.Bind<PlayModeController>().AsTransient();
             Container.Bind<GameplayModule>().FromInstance(gameplayModule).AsSingle();
         }
     }

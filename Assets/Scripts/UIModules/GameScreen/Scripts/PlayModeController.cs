@@ -6,7 +6,7 @@ using Zenject;
 
 namespace UIModules.GameScreen.Scripts
 {
-    public class GameScreenController : IController
+    public class PlayModeController : IController
     {
         private readonly IRootController _rootController;
         private readonly GameScreenUIView _gameScreenUIView;
@@ -14,7 +14,7 @@ namespace UIModules.GameScreen.Scripts
         private readonly PlaceholderFactory<Ring> _ringFactory;
         private readonly UniTaskCompletionSource<Action> _completionSource;
         
-        public GameScreenController(IRootController rootController, GameScreenUIView gameScreenUIView, 
+        public PlayModeController(IRootController rootController, GameScreenUIView gameScreenUIView, 
             GameplayModule gameplayModule, PlaceholderFactory<Ring> ringFactory)
         {
             _rootController = rootController;
@@ -30,10 +30,9 @@ namespace UIModules.GameScreen.Scripts
             await _gameScreenUIView.Show();
             SetupEventListeners();
             _gameplayModule.gameObject.SetActive(true);
-            //_gameplayModule.Initialize(_gameScreenUIView);
+            _gameplayModule.Initialize(_gameScreenUIView, _ringFactory);
             _gameplayModule.Show();
             _gameplayModule.StartGame();
-            
             var result = await _completionSource.Task;
             result.Invoke();
         }

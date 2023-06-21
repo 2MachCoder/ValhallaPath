@@ -18,7 +18,7 @@ namespace Start
             _map = new Dictionary<ControllerMap, Type>
             {
                 { ControllerMap.MainMenu, typeof(MainMenuController)},
-                { ControllerMap.GameScreen, typeof(GameScreenController)},
+                { ControllerMap.GameScreen, typeof(PlayModeController)},
             };
         }
 
