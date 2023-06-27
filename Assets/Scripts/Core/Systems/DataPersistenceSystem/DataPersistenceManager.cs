@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Modules.Game.Scripts;
 using UnityEngine;
 using Zenject;
 
@@ -8,7 +9,7 @@ namespace Core.Systems.DataPersistenceSystem
     public class DataPersistenceManager : MonoBehaviour
     {
         [Inject] private AudioSystem _audioSystem;
-        [Inject] private GameplayModule _gameplayModule;
+        [Inject] private PlayModeManager _playModeManager;
         [SerializeField] private string fileName;
         [SerializeField] private bool useEncryption;
         private readonly List<IDataPersistence> _dataPersistenceObjects = new();
@@ -43,10 +44,9 @@ namespace Core.Systems.DataPersistenceSystem
         private void SetDataPersistenceObjects()
         {
             _dataPersistenceObjects.Add(_audioSystem);
-            _dataPersistenceObjects.Add(_gameplayModule);
+            _dataPersistenceObjects.Add(_playModeManager);
         }
         private void OnApplicationPause(bool pauseStatus) { if (pauseStatus) SaveData(); }
         private void OnApplicationQuit() => SaveData();
-       
     }
 }

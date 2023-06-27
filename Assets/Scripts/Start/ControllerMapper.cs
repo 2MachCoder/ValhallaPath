@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Core.Controllers;
-using UIModules.GameScreen.Scripts;
-using UIModules.MainMenu.Scripts;
+using Modules.Game.Scripts;
+using Modules.MainMenu.Scripts;
+using Modules.StartGame.Scripts;
 using Zenject;
 
 namespace Start
@@ -17,8 +18,9 @@ namespace Start
             _diContainer = diContainer;
             _map = new Dictionary<ControllerMap, Type>
             {
+                { ControllerMap.StartGame, typeof(StartGameController)},
                 { ControllerMap.MainMenu, typeof(MainMenuController)},
-                { ControllerMap.GameScreen, typeof(PlayModeController)},
+                { ControllerMap.PlayMode, typeof(PlayModeController)}
             };
         }
 

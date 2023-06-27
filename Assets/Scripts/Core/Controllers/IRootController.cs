@@ -17,10 +17,8 @@ namespace Core.Controllers
     
     public enum ControllerMap
     {
-        //StartGame = 0,
-        MainMenu = 0,
-        Settings = 1,
-        GameScreen = 2,
-        PauseScreen = 3
+        StartGame = 0,
+        MainMenu = 1,
+        PlayMode = 2
     }
 }

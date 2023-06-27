@@ -8,35 +8,24 @@ namespace Start
 {
     public class RootController : MonoBehaviour, IRootController
     {
-        private readonly SemaphoreSlim _semaphoreSlim = new SemaphoreSlim(1, 1);
-        
-        [Inject]
-        private ControllerMapper _controllerMapper;
-
+        [Inject] private ControllerMapper _controllerMapper;
+        private readonly SemaphoreSlim _semaphoreSlim = new (1, 1);
         private IController _currentController;
 
-        private void Start()
-        {
-            Application.targetFrameRate = 30;
-            RunController(ControllerMap.MainMenu, null).Forget();
-        }
-
-        public async UniTaskVoid RunController(ControllerMap controllerMap, object param)
+        private void Start() => RunController(ControllerMap.StartGame).Forget();
+        
+        public async UniTaskVoid RunController(ControllerMap controllerMap, object param = null)
         {
             await _semaphoreSlim.WaitAsync();
+            
             try
             {
-                if (_controllerMapper == null)
-                    Debug.Log("ControllerMapper - NULL");
                 _currentController = _controllerMapper.Resolve(controllerMap);
                 await _currentController.Run(param);
                 await _currentController.Stop();
                 _currentController.Dispose();
             }
-            finally
-            {
-                _semaphoreSlim.Release();
-            }
+            finally { _semaphoreSlim.Release(); }
         }
     }
 }

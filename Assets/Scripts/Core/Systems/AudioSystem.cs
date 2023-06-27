@@ -10,7 +10,7 @@ namespace Core.Systems
         [SerializeField] private AudioSource musicAudioSource;
         public float MusicVolume { get; private set; }
         public float SoundsVolume { get; private set; }
-        
+
         public void PlayMainMenuMelody() => musicAudioSource.Play();
         public void StopMainMenuMelody() => musicAudioSource.Stop();
 
@@ -41,7 +41,6 @@ namespace Core.Systems
             MusicVolume = gameData.MusicVolume;
             SoundsVolume = gameData.SoundsVolume;
             musicAudioSource.volume = MusicVolume;
-            musicAudioSource.Play();
         }
     }
 }

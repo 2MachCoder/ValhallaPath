@@ -1,0 +1,404 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f0b0c553be8edd4682e9180fdd13e37, type: 3}
+  m_Name: I2Languages
+  m_EditorClassIdentifier: 
+  mSource:
+    UserAgreesToHaveItOnTheScene: 0
+    UserAgreesToHaveItInsideThePluginsFolder: 0
+    GoogleLiveSyncIsUptoDate: 1
+    mTerms:
+    - Term: Lose
+      TermType: 0
+      Description: 
+      Languages:
+      - Lose
+      - Verlieren
+      - Perdre
+      - Perdere
+      - Perder
+      - Perder
+      - "Straci\u0107"
+      - "\u0422\u0435\u0440\u044F\u0442\u044C"
+      - "\u10D3\u10D0\u10D9\u10D0\u10E0\u10D2\u10D0\u10D5\u10E1"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: You lost the ball
+      TermType: 0
+      Description: 
+      Languages:
+      - You lost the ball
+      - Du hast den Ball verloren
+      - Tu as perdu le ballon
+      - Hai perso la palla
+      - perdiste la pelota
+      - "Voc\xEA perdeu a bola"
+      - "Zgubi\u0142e\u015B pi\u0142k\u0119"
+      - "\u0412\u044B \u043F\u043E\u0442\u0435\u0440\u044F\u043B\u0438 \u043C\u044F\u0447"
+      - "\u10D7\u10E5\u10D5\u10D4\u10DC \u10D3\u10D0\u10D9\u10D0\u10E0\u10D2\u10D4\u10D7
+        \u10D1\u10E3\u10E0\u10D7\u10D8"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: Score
+      TermType: 0
+      Description: 
+      Languages:
+      - Score
+      - Punktzahl
+      - Score
+      - Punto
+      - Puntaje
+      - "Pontua\xE7\xE3o"
+      - Wynik
+      - "\u0421\u0447\u0435\u0442"
+      - "\u10E5\u10E3\u10DA\u10D0"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: Win
+      TermType: 0
+      Description: 
+      Languages:
+      - Win
+      - Gewinnen
+      - Gagner
+      - Vincita
+      - Ganar
+      - Ganhar
+      - "Wygra\u0107[i2s_Touch]Wygranie"
+      - "\u041F\u043E\u0431\u0435\u0434\u0438\u0442\u044C[i2s_Touch]\u041F\u043E\u0431\u0435\u0434\u0430"
+      - "\u10DB\u10DD\u10D2\u10D4\u10D1\u10D0"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: Great job
+      TermType: 0
+      Description: 
+      Languages:
+      - Great job
+      - Gut gemacht
+      - Bon travail
+      - Ottimo lavoro
+      - Gran trabajo
+      - Bom trabalho
+      - "Dobra robota[i2s_Touch]\u015Awietna robota"
+      - "\u041E\u0442\u043B\u0438\u0447\u043D\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430"
+      - "\u1CA7\u10DD\u10E9\u10D0\u10E6"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: Level
+      TermType: 0
+      Description: 
+      Languages:
+      - Level
+      - Eben
+      - Niveau
+      - Livello
+      - Nivel
+      - "N\xEDvel"
+      - Poziom
+      - "\u0423\u0440\u043E\u0432\u0435\u043D\u044C"
+      - "\u10D3\u10DD\u10DC\u10D4"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: Play
+      TermType: 0
+      Description: 
+      Languages:
+      - Play
+      - Spielen
+      - Jouer
+      - Giocare
+      - Jugar
+      - Jogar
+      - "Gra\u0107"
+      - "\u0418\u0433\u0440\u0430\u0442\u044C"
+      - "\u10D7\u10D0\u10DB\u10D0\u10E8\u10D8"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: Settings
+      TermType: 0
+      Description: 
+      Languages:
+      - Settings
+      - Einstellungen
+      - "Param\xE8tres"
+      - Impostazioni
+      - Ajustes
+      - "Configura\xE7\xF5es"
+      - Ustawienia
+      - "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438"
+      - "\u10DE\u10D0\u10E0\u10D0\u10DB\u10D4\u10E2\u10E0\u10D4\u10D1\u10D8"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: Music
+      TermType: 0
+      Description: 
+      Languages:
+      - Music
+      - Musik
+      - Musique
+      - Musica
+      - "M\xFAsica"
+      - "M\xFAsica"
+      - Muzyka
+      - "\u041C\u0443\u0437\u044B\u043A\u0430"
+      - "\u10DB\u10E3\u10E1\u10D8\u10D9\u10D0"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: Sound
+      TermType: 0
+      Description: 
+      Languages:
+      - Sound
+      - Klang
+      - Son
+      - Suono
+      - Sonido
+      - Som
+      - "D\u017Awi\u0119k"
+      - "\u0417\u0432\u0443\u043A"
+      - "\u10EE\u10DB\u10D0"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: Close
+      TermType: 0
+      Description: 
+      Languages:
+      - Close
+      - "Schlie\xDFen"
+      - Fermer
+      - Vicino
+      - Cerca
+      - Fechar
+      - "Zamkn\u0105\u0107[i2s_Touch]Zamkn\u0105\u0107"
+      - "\u0417\u0430\u043A\u0440\u044B\u0432\u0430\u0442\u044C[i2s_Touch]\u0417\u0430\u043A\u0440\u044B\u0442\u044C"
+      - "\u10D3\u10D0\u10EE\u10E3\u10E0\u10D5\u10D0"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: Language
+      TermType: 0
+      Description: 
+      Languages:
+      - Language
+      - Sprache
+      - Langue
+      - Lingua
+      - Idioma
+      - Linguagem
+      - "J\u0119zyk"
+      - "\u042F\u0437\u044B\u043A"
+      - "\u10D4\u10DC\u10D0"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: Your record
+      TermType: 0
+      Description: 
+      Languages:
+      - Total score
+      - Gesamtpunktzahl
+      - Score total
+      - Punteggio totale
+      - Puntaje total
+      - "Pontua\xE7\xE3o total"
+      - "Ca\u0142kowity wynik"
+      - "\u041E\u0431\u0449\u0438\u0439 \u0441\u0447\u0451\u0442"
+      - "\u10E1\u10D0\u10D4\u10E0\u10D7\u10DD \u10E5\u10E3\u10DA\u10D0"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: LanguagesFonts
+      TermType: 9
+      Description: 
+      Languages:
+      - '[i2s_Touch]Fonts & Materials/LiberationSans SDF'
+      - '[i2s_Touch]Roboto-Medium SDF'
+      - '[i2s_Touch]Roboto-Medium SDF'
+      - '[i2s_Touch]Roboto-Medium SDF'
+      - '[i2s_Touch]Roboto-Medium SDF'
+      - '[i2s_Touch]Roboto-Medium SDF'
+      - '[i2s_Touch]Roboto-Medium SDF'
+      - '[i2s_Touch]Roboto-Medium SDF'
+      - '[i2s_Touch]static_NotoSansGeorgian_Condensed_NotoSansGeorgian_Condensed-Medium
+        SDF'
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: Loading
+      TermType: 0
+      Description: 
+      Languages:
+      - Loading
+      - Wird Geladen
+      - Chargement
+      - Caricamento
+      - Cargando
+      - Carregando
+      - "\u0141adowanie"
+      - "\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0430"
+      - "\u10E9\u10D0\u10E2\u10D5\u10D8\u10E0\u10D7\u10D5\u10D0"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: Tools
+      TermType: 0
+      Description: 
+      Languages:
+      - Tools
+      - Werkzeug
+      - Outils
+      - Utensili
+      - Herramientas
+      - Ferramentas
+      - "Narz\u0119dzia"
+      - "\u0418\u043D\u0441\u0442\u0440\u0443\u043C\u0435\u043D\u0442\u044B"
+      - "\u10EE\u10D4\u10DA\u10E1\u10D0\u10EC\u10E7\u10DD\u10D4\u10D1\u10D8"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: Start
+      TermType: 0
+      Description: 
+      Languages:
+      - Start
+      - Start
+      - Commencer
+      - Inizio
+      - Comenzar
+      - "Come\xE7ar"
+      - "Pocz\u0105tek[i2s_Touch]Start"
+      - "\u041D\u0430\u0447\u0438\u043D\u0430\u0442\u044C[i2s_Touch]\u0421\u0442\u0430\u0440\u0442"
+      - "\u10D3\u10D0\u10EC\u10E7\u10D4\u10D1\u10D0"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: Total score
+      TermType: 0
+      Description: 
+      Languages:
+      - Total score
+      - Gesamtpunktzahl
+      - Score total
+      - Punteggio totale
+      - Puntaje total
+      - "Pontua\xE7\xE3o total"
+      - "Ca\u0142kowity wynik"
+      - "\u041E\u0431\u0449\u0438\u0439 \u0441\u0447\u0435\u0442"
+      - "\u10E1\u10D0\u10D4\u10E0\u10D7\u10DD \u10E5\u10E3\u10DA\u10D0"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: Quit
+      TermType: 0
+      Description: 
+      Languages:
+      - Quit
+      - "Aufh\xF6ren"
+      - "Arr\xEAter"
+      - Esentato
+      - Abandonar
+      - Desistir
+      - "Zrezygnowa\u0107 "
+      - "\u041F\u043E\u043A\u0438\u0434\u0430\u0442\u044C"
+      - "\u10D3\u10D0\u10E2\u10DD\u10D5\u10D0"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: Health
+      TermType: 0
+      Description: 
+      Languages:
+      - '[i2s_Touch]Health'
+      - '[i2s_Touch]Gesundheit'
+      - "[i2s_Touch]Sant\xE9"
+      - '[i2s_Touch]Salute'
+      - '[i2s_Touch]Salud'
+      - "[i2s_Touch]Sa\xFAde"
+      - '[i2s_Touch]Zdrowie'
+      - "[i2s_Touch]\u0417\u0434\u043E\u0440\u043E\u0432\u044C\u0435"
+      - "[i2s_Touch]\u10EF\u10D0\u10DC\u10DB\u10E0\u10D7\u10D4\u10DA\u10DD\u10D1\u10D0"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: Use the tools to throw the ball into the basket
+      TermType: 0
+      Description: 
+      Languages:
+      - Go through the whole maze!
+      - Gehen Sie durch das ganze Labyrinth!
+      - "Parcourez tout le labyrinthe\_!"
+      - Attraversa l'intero labirinto!
+      - "\xA1Recorre todo el laberinto!"
+      - Passe por todo o labirinto!
+      - "Przejd\u017A przez ca\u0142y labirynt!"
+      - "\u041F\u0440\u043E\u0439\u0434\u0438 \u0432\u0435\u0441\u044C \u043B\u0430\u0431\u0438\u0440\u0438\u043D\u0442!"
+      - "\u10D2\u10D0\u10D8\u10D0\u10E0\u10D4 \u10DB\u10D7\u10D4\u10DA\u10D8 \u10DA\u10D0\u10D1\u10D8\u10E0\u10D8\u10DC\u10D7\u10D8!"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: The less you use tools, the better.
+      TermType: 0
+      Description: 
+      Languages:
+      - Avoid walls, pick up boosters
+      - "Vermeiden Sie W\xE4nde und holen Sie sich Booster"
+      - "\xC9vitez les murs, prenez des boosters"
+      - Evita i muri, raccogli i booster
+      - Evita las paredes, recoge refuerzos
+      - Evite paredes, pegue boosters
+      - "Unikaj \u015Bcian, zbieraj dopalacze"
+      - "\u0418\u0437\u0431\u0435\u0433\u0430\u0439\u0442\u0435 \u0441\u0442\u0435\u043D,
+        \u043F\u043E\u0434\u0431\u0438\u0440\u0430\u0439\u0442\u0435 \u0431\u0443\u0441\u0442\u0435\u0440\u044B"
+      - "\u10DB\u10DD\u10D4\u10E0\u10D8\u10D3\u10D4\u10D7 \u10D9\u10D4\u10D3\u10DA\u10D4\u10D1\u10E1,
+        \u10D0\u10D8\u10E6\u10D4\u10D7 \u10D2\u10D0\u10DB\u10D0\u10EB\u10DA\u10D8\u10D4\u10E0\u10D4\u10D1\u10DA\u10D4\u10D1\u10D8"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    CaseInsensitiveTerms: 0
+    OnMissingTranslation: 1
+    mTerm_AppName: 
+    mLanguages:
+    - Name: English
+      Code: en
+      Flags: 0
+    - Name: German
+      Code: de
+      Flags: 0
+    - Name: French
+      Code: fr
+      Flags: 0
+    - Name: Italian
+      Code: it
+      Flags: 0
+    - Name: Spanish
+      Code: es
+      Flags: 0
+    - Name: Portuguese
+      Code: pt
+      Flags: 0
+    - Name: Polish
+      Code: pl
+      Flags: 0
+    - Name: Russian
+      Code: ru
+      Flags: 0
+    - Name: Georgian
+      Code: ka
+      Flags: 0
+    IgnoreDeviceLanguage: 0
+    _AllowUnloadingLanguages: 0
+    Google_WebServiceURL: https://script.google.com/macros/s/AKfycby4ZDuU6vi8Z4DlZhtfwhWrg42e4yfgBabEqIALEFFnl_8yfXvot5DGZGlS7stFt1VO/exec
+    Google_SpreadsheetKey: 
+    Google_SpreadsheetName: 
+    Google_LastUpdatedVersion: 
+    Google_Password: change_this
+    GoogleUpdateFrequency: 3
+    GoogleInEditorCheckFrequency: 2
+    GoogleUpdateSynchronization: 1
+    GoogleUpdateDelay: 0
+    Assets:
+    - {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+    - {fileID: 11400000, guid: bbaf41ccbd201f541ae190320f672987, type: 2}
+    - {fileID: 11400000, guid: c356e0f530f2479438e2077dcb060e87, type: 2}
+    Spreadsheet_LocalFileName: 
+    Spreadsheet_LocalCSVSeparator: ','
+    Spreadsheet_LocalCSVEncoding: utf-8
+    Spreadsheet_SpecializationAsRows: 1
+    Spreadsheet_SortRows: 1
