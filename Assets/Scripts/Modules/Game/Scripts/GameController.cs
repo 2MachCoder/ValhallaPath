@@ -15,7 +15,7 @@ namespace Modules.Game.Scripts
         private readonly PlaceholderFactory<Ring> _ringFactory;
         private readonly UniTaskCompletionSource<Action> _completionSource;
         private LevelSettings[] _levels;
-        private LevelSettings _currentLevel;
+        private LevelSettings _currentLevelSettings;
         
         public PlayModeController(IRootController rootController, PlayModeUIView playModeUIView,
             PlayModeManager playModeManager)
@@ -29,11 +29,11 @@ namespace Modules.Game.Scripts
         
         public async UniTask Run(object param)
         {
-            _currentLevel = (LevelSettings)param;
-            _levels = _playModeManager.levelScriptableObjects;
+            _levels = _playModeManager.levelSettings;
+            _currentLevelSettings = _levels[_playModeManager.LevelIndex];
             SetupEventListeners();
-            _playModeUIView.healthBar.gameObject.SetActive(false);
-            _playModeUIView.startPopup.levelNumber.text = (Array.IndexOf(_levels,_currentLevel) + 1).ToString();
+            _playModeManager.Initialize(_currentLevelSettings);
+            _playModeUIView.startPopup.levelNumber.text = (Array.IndexOf(_levels,_currentLevelSettings) + 1).ToString();
             _playModeUIView.Show().Forget();
             await _playModeUIView.startPopup.Show();
             var result = await _completionSource.Task;
@@ -42,10 +42,11 @@ namespace Modules.Game.Scripts
         
         private void SetupEventListeners()
         {
-            _playModeManager.OnLevelCompleted += OnWin;
+            _playModeManager.OnPlayerDamaged += PlayerDamaged;
             _playModeManager.OnBusterCollected += BusterCollected;
+            _playModeManager.OnLevelCompleted += OnWin;
             _playModeManager.OnLevelFailed += OnLose;
-            _playModeUIView.startPopup.startButton.onClick.AddListener(OnPlayButtonClicked);
+            _playModeUIView.startPopup.startButton.onClick.AddListener(OnStartButtonClicked);
             _playModeUIView.startPopup.backToMenuButton.onClick.AddListener(OnBackToMenuButtonClicked); 
             _playModeUIView.winPopup.nextLevelButton.onClick.AddListener(OnNextLevelButtonClicked);
             _playModeUIView.winPopup.backToMenuButton.onClick.AddListener(OnBackToMenuButtonClicked);
@@ -54,76 +55,72 @@ namespace Modules.Game.Scripts
             _playModeUIView.losePopup.backToMenuButton.onClick.AddListener(OnBackToMenuButtonClicked);
         }
 
+        private void PlayerDamaged(int health)
+        {
+            _playModeUIView.healthBar.value = health;
+        }
         private void BusterCollected()
         {
             //Camera shake
         }
         
-        private void OnStartLevelButtonClicked()
-        {
-            //_playModeUIView.scoreCounter.SetActive(true);
-            _playModeUIView.healthBar.gameObject.SetActive(true);
-            _playModeManager.StartGame();
-        }
-
-        private void OnLose() => OnLevelComplete(_playModeUIView.losePopup);
+        private void OnLose() => OnLevelCompleted(_playModeUIView.losePopup);
         private void OnWin()
         {
-            OnLevelComplete(_playModeUIView.winPopup);
+            OnLevelCompleted(_playModeUIView.winPopup);
             //_scoreSystem.Score += _score;
         }
         
-        private async void OnLevelComplete(LevelResultPopup resultPopup)
+        private async void OnLevelCompleted(LevelResultPopup resultPopup)
         {
-            //resultPopup.scoreCountText.text = _score.ToString();
-            //_playModeUIView.scoreCount.text = "0";
-            //_playModeUIView.scoreCounter.gameObject.SetActive(false);
             _playModeUIView.healthBar.value = 100f;
-            _playModeManager.player.IsAlive = true;
+            _playModeUIView.healthUI.SetActive(false);
+            _playModeManager.EndGame();
             await resultPopup.Show();
         }
         
         #region Popups
-        private async void OnPlayButtonClicked()    //StartPopup
+        private async void OnStartButtonClicked()    //StartPopup
         {
             await _playModeUIView.startPopup.Hide();
-            _playModeManager.Show();
-            _playModeManager.Initialize(_currentLevel);
+            _playModeUIView.healthUI.SetActive(true);
+            _playModeUIView.healthBar.value = 100f;
+            _playModeManager.StartGame();
         }
         
-        private async void OnBackToMenuButtonClicked()  //from all popups
+        private async void OnBackToMenuButtonClicked()  //All popups
         {
             _playModeManager.CleanAndHide();
             await _playModeUIView.Hide();
             _completionSource.TrySetResult(() => _rootController.RunController(ControllerMap.MainMenu));
         }
 
-        private void OnRestartButtonClicked(LevelResultPopup popup) //from both popups 
+        private async void OnRestartButtonClicked(LevelResultPopup popup) //from both popups 
         {
-            _playModeManager.Hide();
-            _completionSource.TrySetResult(() => _rootController.RunController(ControllerMap.PlayMode, _currentLevel));
+            await popup.Hide();
+            _playModeManager.Restart();
         }
 
-        private void OnNextLevelButtonClicked() //from WinPopup
+        private async void OnNextLevelButtonClicked() //from WinPopup
         {
-            _playModeManager.CleanAndHide();
-            _completionSource.TrySetResult(() => _rootController.RunController(ControllerMap.PlayMode,
-                _levels[DetermineNextLevelIndex()]));
+            await _playModeUIView.winPopup.Hide();
+            _playModeManager.GenerateLevel(_currentLevelSettings);
         }
         #endregion
         
         private int DetermineNextLevelIndex()
         {
-            var levelIndex = Array.IndexOf(_levels, _currentLevel);
+            var levelIndex = Array.IndexOf(_levels, _currentLevelSettings);
             if (levelIndex == _levels.Length)
                 levelIndex = 0;
+            _playModeManager.LevelIndex = (byte)levelIndex;
             return levelIndex;
         }
 
         public async UniTask Stop() => await _playModeUIView.Hide();
         public void Dispose()
         {
-            _playModeUIView.startPopup.startButton.onClick.RemoveListener(OnPlayButtonClicked);
+            _playModeUIView.startPopup.startButton.onClick.RemoveListener(OnStartButtonClicked);
             _playModeUIView.startPopup.backToMenuButton.onClick.RemoveListener(OnBackToMenuButtonClicked); 
             _playModeUIView.winPopup.nextLevelButton.onClick.RemoveListener(OnNextLevelButtonClicked);
             _playModeUIView.winPopup.backToMenuButton.onClick.RemoveListener(OnBackToMenuButtonClicked);

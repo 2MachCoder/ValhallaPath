@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 444928b4681840cb9af472a44f7a075f, type: 3}
   m_Name: Level settings 1
   m_EditorClassIdentifier: 
-  rings: []
+  rings:
+  - {fileID: 11400000, guid: b62bb994f6a824c439387e488920d46a, type: 2}
+  - {fileID: 11400000, guid: 882c785f922f2dd46976cc68de9fd2dd, type: 2}
+  - {fileID: 11400000, guid: 11ecbe8a810b93b4d9bb07ab92b23555, type: 2}
+  - {fileID: 11400000, guid: 8452d301e0e12984a88635fe17ea7c2d, type: 2}

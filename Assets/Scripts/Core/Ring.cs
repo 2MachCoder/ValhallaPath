@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 using Zenject;
 
 namespace Core
@@ -10,12 +11,22 @@ namespace Core
         [SerializeField] private GameObject[] walls = new GameObject[8];
         private Animator _animator;
         private AudioSource _audioSource;
-        private static readonly int Break = Animator.StringToHash("Break");
+        private static readonly int IsBroken = Animator.StringToHash("IsBroken");
 
         private void Awake()
         {
             _animator = GetComponent<Animator>();
             _audioSource = GetComponent<AudioSource>();
+        }
+
+        public async void Break()
+        {
+            _audioSource.Play();
+            _animator.SetBool(IsBroken, true);
+            var animationDelayTime = (int)(_animator.runtimeAnimatorController.animationClips[0].length * 1000);
+            await UniTask.Delay(animationDelayTime);
+            foreach (var wall in walls)
+                wall.SetActive(false);
         }
 
         private void Initialize(Vector3 position, RingSettings settings)
@@ -28,7 +39,7 @@ namespace Core
             {
                 walls[index].SetActive(false);
             } 
-            _animator.SetBool(Break, false);
+            _animator.SetBool(IsBroken, false);
         }
         
         public class RingPool : MonoMemoryPool<Vector3, RingSettings, Ring>

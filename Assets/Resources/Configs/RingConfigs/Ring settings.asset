@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9ed2b91d0644ecbbde08432fa137318, type: 3}
   m_Name: Ring settings
   m_EditorClassIdentifier: 
-  breakableWalls: 
+  breakableWalls: 0400000005000000
