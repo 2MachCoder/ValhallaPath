@@ -1,3 +1,4 @@
+using Cinemachine;
 using Core.Controllers;
 using Core.Systems;
 using Core.Systems.DataPersistenceSystem;
@@ -12,6 +13,7 @@ namespace Start
         [SerializeField] private RootController rootController;
         [SerializeField] private RootCanvas rootCanvas;
         [SerializeField] private Camera mainCamera;
+        [SerializeField] private CinemachineVirtualCamera virtualCamera;
         [SerializeField] private AudioSystem audioSystem;
         [SerializeField] private DataPersistenceManager dataPersistenceManager;
 
@@ -21,6 +23,7 @@ namespace Start
             Container.Bind<IRootController>().To<RootController>().FromInstance(rootController).AsSingle().NonLazy();
             Container.Bind<RootCanvas>().FromInstance(rootCanvas).AsSingle();
             Container.Bind<Camera>().FromInstance(mainCamera).AsSingle();
+            Container.Bind<CinemachineVirtualCamera>().FromInstance(virtualCamera).AsSingle();
             Container.Bind<AudioSystem>().FromInstance(audioSystem).AsSingle();
             Container.Bind<DataPersistenceManager>().FromInstance(dataPersistenceManager).AsSingle();
         }

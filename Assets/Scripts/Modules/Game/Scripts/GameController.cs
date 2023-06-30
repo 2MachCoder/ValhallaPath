@@ -63,19 +63,19 @@ namespace Modules.Game.Scripts
         {
             //Camera shake
         }
-        
-        private void OnLose() => OnLevelCompleted(_playModeUIView.losePopup);
-        private void OnWin()
+
+        private void OnLose()
         {
-            OnLevelCompleted(_playModeUIView.winPopup);
-            //_scoreSystem.Score += _score;
+            _playModeUIView.healthBar.value = 0f;
+            OnLevelCompleted(_playModeUIView.losePopup);
         }
-        
+
+        private void OnWin() => OnLevelCompleted(_playModeUIView.winPopup);
+
         private async void OnLevelCompleted(LevelResultPopup resultPopup)
         {
-            _playModeUIView.healthBar.value = 100f;
             _playModeUIView.healthUI.SetActive(false);
-            _playModeManager.EndGame();
+            _playModeManager.GameStarted = false;
             await resultPopup.Show();
         }
         
@@ -83,14 +83,15 @@ namespace Modules.Game.Scripts
         private async void OnStartButtonClicked()    //StartPopup
         {
             await _playModeUIView.startPopup.Hide();
+            _playModeUIView.Show().Forget();
             _playModeUIView.healthUI.SetActive(true);
             _playModeUIView.healthBar.value = 100f;
-            _playModeManager.StartGame();
+            _playModeManager.GameStarted = true;
         }
         
         private async void OnBackToMenuButtonClicked()  //All popups
         {
-            _playModeManager.CleanAndHide();
+            _playModeManager.Hide();
             await _playModeUIView.Hide();
             _completionSource.TrySetResult(() => _rootController.RunController(ControllerMap.MainMenu));
         }
@@ -98,13 +99,22 @@ namespace Modules.Game.Scripts
         private async void OnRestartButtonClicked(LevelResultPopup popup) //from both popups 
         {
             await popup.Hide();
+            _playModeUIView.healthUI.SetActive(true);
+            _playModeUIView.healthBar.value = 100f;
+            _playModeUIView.healthUI.SetActive(true);
+            _playModeUIView.Show().Forget();
             _playModeManager.Restart();
         }
 
         private async void OnNextLevelButtonClicked() //from WinPopup
         {
+            DetermineNextLevelIndex();
             await _playModeUIView.winPopup.Hide();
+            _playModeUIView.healthUI.SetActive(true);
+            _playModeUIView.healthBar.value = 100f;
+            _playModeUIView.Show().Forget();
             _playModeManager.GenerateLevel(_currentLevelSettings);
+            _playModeManager.GameStarted = true;
         }
         #endregion
         
@@ -113,6 +123,7 @@ namespace Modules.Game.Scripts
             var levelIndex = Array.IndexOf(_levels, _currentLevelSettings);
             if (levelIndex == _levels.Length)
                 levelIndex = 0;
+            _currentLevelSettings = _levels[levelIndex];
             _playModeManager.LevelIndex = (byte)levelIndex;
             return levelIndex;
         }
