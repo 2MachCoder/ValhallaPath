@@ -8,9 +8,6 @@ namespace Modules.StartGame.Scripts
     {
         public ProgressBarView progressBarView;
         
-        public override UniTask Show()
-        {
-            return UniTask.CompletedTask;
-        }
+        public override UniTask Show() { return UniTask.CompletedTask; }
     }
 }

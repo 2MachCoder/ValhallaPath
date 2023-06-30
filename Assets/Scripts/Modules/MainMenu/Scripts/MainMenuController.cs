@@ -43,10 +43,8 @@ namespace Modules.MainMenu.Scripts
             _mainMenuUIView.settingsPopup.soundsVolumeSlider.onValueChanged.AddListener(ChangeSoundsVolumeSlider);
         }
         
-        private void PlayButtonClicked()
-        {   
+        private void PlayButtonClicked() =>
             _completionSource.TrySetResult(() => _rootController.RunController(ControllerMap.PlayMode));
-        }
 
         private void ExitButtonClicked() => Application.Quit();
         
@@ -62,13 +60,10 @@ namespace Modules.MainMenu.Scripts
         
         private void OnMusicSwitchToggled(bool switchEnabled)
         {
-            if (switchEnabled)
-            {
-                if (_mainMenuUIView.settingsPopup.musicVolumeSlider.value == 0)
-                    _mainMenuUIView.settingsPopup.musicVolumeSlider.value = .5f;
-            }
-            else
+            if (!switchEnabled)
                 _mainMenuUIView.settingsPopup.musicVolumeSlider.value = 0;
+            else if (_mainMenuUIView.settingsPopup.musicVolumeSlider.value == 0)
+                _mainMenuUIView.settingsPopup.musicVolumeSlider.value = .5f;
         }
         
         private void ChangeMusicVolumeSlider(float volume)
@@ -89,13 +84,10 @@ namespace Modules.MainMenu.Scripts
 
         private void OnSoundsSwitchToggled(bool switchEnabled)
         {
-            if (switchEnabled)
-            {
-                if (_mainMenuUIView.settingsPopup.soundsVolumeSlider.value == 0)
-                    _mainMenuUIView.settingsPopup.soundsVolumeSlider.value = .5f;
-            }
-            else
+            if(!switchEnabled)
                 _mainMenuUIView.settingsPopup.soundsVolumeSlider.value = 0;
+            else if(_mainMenuUIView.settingsPopup.soundsVolumeSlider.value == 0)
+                _mainMenuUIView.settingsPopup.soundsVolumeSlider.value = .5f;
         } 
         
         private void ChangeSoundsVolumeSlider(float volume)
