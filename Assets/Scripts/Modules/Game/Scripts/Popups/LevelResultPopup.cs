@@ -1,5 +1,4 @@
 ﻿using Core.UI;
-using TMPro;
 
 namespace Modules.Game.Scripts.Popups
 {
@@ -8,6 +7,5 @@ namespace Modules.Game.Scripts.Popups
         public ButtonZoom backToMenuButton;
         public ButtonZoom nextLevelButton;
         public ButtonZoom restartButton;
-        public TMP_Text scoreCountText;
     }
 }

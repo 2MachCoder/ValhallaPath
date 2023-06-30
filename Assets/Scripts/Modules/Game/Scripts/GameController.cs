@@ -113,19 +113,18 @@ namespace Modules.Game.Scripts
             _playModeUIView.healthUI.SetActive(true);
             _playModeUIView.healthBar.value = 100f;
             _playModeUIView.Show().Forget();
-            _playModeManager.GenerateLevel(_currentLevelSettings);
+            _playModeManager.InitGenerateLevel(_currentLevelSettings);
             _playModeManager.GameStarted = true;
         }
         #endregion
         
-        private int DetermineNextLevelIndex()
+        private void DetermineNextLevelIndex()
         {
             var levelIndex = Array.IndexOf(_levels, _currentLevelSettings);
             if (levelIndex == _levels.Length)
                 levelIndex = 0;
             _currentLevelSettings = _levels[levelIndex];
             _playModeManager.LevelIndex = (byte)levelIndex;
-            return levelIndex;
         }
 
         public async UniTask Stop() => await _playModeUIView.Hide();

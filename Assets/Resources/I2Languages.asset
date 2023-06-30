@@ -21,76 +21,31 @@ MonoBehaviour:
       TermType: 0
       Description: 
       Languages:
-      - Lose
-      - Verlieren
-      - Perdre
-      - Perdere
-      - Perder
-      - Perder
-      - "Straci\u0107"
-      - "\u0422\u0435\u0440\u044F\u0442\u044C"
-      - "\u10D3\u10D0\u10D9\u10D0\u10E0\u10D2\u10D0\u10D5\u10E1"
-      Flags: 000000000000000000
-      Languages_Touch: []
-    - Term: You lost the ball
-      TermType: 0
-      Description: 
-      Languages:
-      - You lost the ball
-      - Du hast den Ball verloren
-      - Tu as perdu le ballon
-      - Hai perso la palla
-      - perdiste la pelota
-      - "Voc\xEA perdeu a bola"
-      - "Zgubi\u0142e\u015B pi\u0142k\u0119"
-      - "\u0412\u044B \u043F\u043E\u0442\u0435\u0440\u044F\u043B\u0438 \u043C\u044F\u0447"
-      - "\u10D7\u10E5\u10D5\u10D4\u10DC \u10D3\u10D0\u10D9\u10D0\u10E0\u10D2\u10D4\u10D7
-        \u10D1\u10E3\u10E0\u10D7\u10D8"
-      Flags: 000000000000000000
-      Languages_Touch: []
-    - Term: Score
-      TermType: 0
-      Description: 
-      Languages:
-      - Score
-      - Punktzahl
-      - Score
-      - Punto
-      - Puntaje
-      - "Pontua\xE7\xE3o"
-      - Wynik
-      - "\u0421\u0447\u0435\u0442"
-      - "\u10E5\u10E3\u10DA\u10D0"
+      - Lose[i2s_Touch]You've lost
+      - Verlieren[i2s_Touch]Du hast verloren
+      - Perdre[i2s_Touch]Tu as perdu
+      - Perdere[i2s_Touch]Hai perso
+      - Perder[i2s_Touch]Has perdido
+      - "Perder[i2s_Touch]Voc\xEA perdeu"
+      - "Straci\u0107[i2s_Touch]Przegra\u0142e\u015B"
+      - "\u0422\u0435\u0440\u044F\u0442\u044C[i2s_Touch]\u0412\u044B \u043F\u0440\u043E\u0438\u0433\u0440\u0430\u043B\u0438"
+      - "\u10D3\u10D0\u10D9\u10D0\u10E0\u10D2\u10D0\u10D5\u10E1[i2s_Touch]\u10E8\u10D4\u10DC
+        \u10D3\u10D0\u10D9\u10D0\u10E0\u10D2\u10D4"
       Flags: 000000000000000000
       Languages_Touch: []
     - Term: Win
       TermType: 0
       Description: 
       Languages:
-      - Win
-      - Gewinnen
-      - Gagner
-      - Vincita
-      - Ganar
-      - Ganhar
-      - "Wygra\u0107[i2s_Touch]Wygranie"
+      - Win[i2s_Touch]Victory
+      - Gewinnen[i2s_Touch]Sieg
+      - Gagner[i2s_Touch]La Victoire
+      - Vincita[i2s_Touch]Vittoria
+      - Ganar[i2s_Touch]Victoria
+      - "Ganhar[i2s_Touch]Vit\xF3ria"
+      - "Wygra\u0107[i2s_Touch]Zwyci\u0119stwo"
       - "\u041F\u043E\u0431\u0435\u0434\u0438\u0442\u044C[i2s_Touch]\u041F\u043E\u0431\u0435\u0434\u0430"
-      - "\u10DB\u10DD\u10D2\u10D4\u10D1\u10D0"
-      Flags: 000000000000000000
-      Languages_Touch: []
-    - Term: Great job
-      TermType: 0
-      Description: 
-      Languages:
-      - Great job
-      - Gut gemacht
-      - Bon travail
-      - Ottimo lavoro
-      - Gran trabajo
-      - Bom trabalho
-      - "Dobra robota[i2s_Touch]\u015Awietna robota"
-      - "\u041E\u0442\u043B\u0438\u0447\u043D\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430"
-      - "\u1CA7\u10DD\u10E9\u10D0\u10E6"
+      - "\u10DB\u10DD\u10D2\u10D4\u10D1\u10D0[i2s_Touch]\u10D2\u10D0\u10DB\u10D0\u10E0\u10EF\u10D5\u10D4\u10D1\u10D0"
       Flags: 000000000000000000
       Languages_Touch: []
     - Term: Level
@@ -198,21 +153,6 @@ MonoBehaviour:
       - "\u10D4\u10DC\u10D0"
       Flags: 000000000000000000
       Languages_Touch: []
-    - Term: Your record
-      TermType: 0
-      Description: 
-      Languages:
-      - Total score
-      - Gesamtpunktzahl
-      - Score total
-      - Punteggio totale
-      - Puntaje total
-      - "Pontua\xE7\xE3o total"
-      - "Ca\u0142kowity wynik"
-      - "\u041E\u0431\u0449\u0438\u0439 \u0441\u0447\u0451\u0442"
-      - "\u10E1\u10D0\u10D4\u10E0\u10D7\u10DD \u10E5\u10E3\u10DA\u10D0"
-      Flags: 000000000000000000
-      Languages_Touch: []
     - Term: LanguagesFonts
       TermType: 9
       Description: 
@@ -274,21 +214,6 @@ MonoBehaviour:
       - "\u10D3\u10D0\u10EC\u10E7\u10D4\u10D1\u10D0"
       Flags: 000000000000000000
       Languages_Touch: []
-    - Term: Total score
-      TermType: 0
-      Description: 
-      Languages:
-      - Total score
-      - Gesamtpunktzahl
-      - Score total
-      - Punteggio totale
-      - Puntaje total
-      - "Pontua\xE7\xE3o total"
-      - "Ca\u0142kowity wynik"
-      - "\u041E\u0431\u0449\u0438\u0439 \u0441\u0447\u0435\u0442"
-      - "\u10E1\u10D0\u10D4\u10E0\u10D7\u10DD \u10E5\u10E3\u10DA\u10D0"
-      Flags: 000000000000000000
-      Languages_Touch: []
     - Term: Quit
       TermType: 0
       Description: 
@@ -319,7 +244,23 @@ MonoBehaviour:
       - "[i2s_Touch]\u10EF\u10D0\u10DC\u10DB\u10E0\u10D7\u10D4\u10DA\u10DD\u10D1\u10D0"
       Flags: 000000000000000000
       Languages_Touch: []
-    - Term: Use the tools to throw the ball into the basket
+    - Term: "\u0412\u044B \u0443\u043C\u0435\u0440\u043B\u0438"
+      TermType: 0
+      Description: 
+      Languages:
+      - You lost the ball[i2s_Touch]Dead
+      - Du hast den Ball verloren[i2s_Touch]Du bist gestorben
+      - Tu as perdu le ballon[i2s_Touch]Tu es mort
+      - Hai perso la palla[i2s_Touch]Sei morto
+      - perdiste la pelota[i2s_Touch]moriste
+      - "Voc\xEA perdeu a bola[i2s_Touch]Voc\xEA morreu"
+      - "Zgubi\u0142e\u015B pi\u0142k\u0119[i2s_Touch]Umar\u0142e\u015B"
+      - "\u0412\u044B \u043F\u043E\u0442\u0435\u0440\u044F\u043B\u0438 \u043C\u044F\u0447[i2s_Touch]\u0423\u043C\u0435\u0440"
+      - "\u10D7\u10E5\u10D5\u10D4\u10DC \u10D3\u10D0\u10D9\u10D0\u10E0\u10D2\u10D4\u10D7
+        \u10D1\u10E3\u10E0\u10D7\u10D8[i2s_Touch]\u10E8\u10D4\u10DC \u10DB\u10DD\u10D9\u10D5\u10D3\u10D8"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: Go through the whole maze!
       TermType: 0
       Description: 
       Languages:
@@ -334,21 +275,49 @@ MonoBehaviour:
       - "\u10D2\u10D0\u10D8\u10D0\u10E0\u10D4 \u10DB\u10D7\u10D4\u10DA\u10D8 \u10DA\u10D0\u10D1\u10D8\u10E0\u10D8\u10DC\u10D7\u10D8!"
       Flags: 000000000000000000
       Languages_Touch: []
-    - Term: The less you use tools, the better.
+    - Term: Avoid walls and enemies, pick up boosters
       TermType: 0
       Description: 
       Languages:
-      - Avoid walls, pick up boosters
-      - "Vermeiden Sie W\xE4nde und holen Sie sich Booster"
-      - "\xC9vitez les murs, prenez des boosters"
-      - Evita i muri, raccogli i booster
-      - Evita las paredes, recoge refuerzos
-      - Evite paredes, pegue boosters
-      - "Unikaj \u015Bcian, zbieraj dopalacze"
+      - Avoid walls, pick up boosters[i2s_Touch]Avoid walls and enemies, pick up
+        boosters
+      - "Vermeiden Sie W\xE4nde und holen Sie sich Booster[i2s_Touch]Weiche Mauern
+        und Feinden aus und sammle Booster ein"
+      - "\xC9vitez les murs, prenez des boosters[i2s_Touch]\xC9vitez les murs et
+        les ennemis, r\xE9cup\xE9rez des boosters"
+      - Evita i muri, raccogli i booster[i2s_Touch]Evita muri e nemici, raccogli
+        i booster
+      - Evita las paredes, recoge refuerzos[i2s_Touch]Evita las paredes y los enemigos,
+        recoge refuerzos.
+      - "Evite paredes, pegue boosters[i2s_Touch]Evite paredes e inimigos, pegue
+        refor\xE7os"
+      - "Unikaj \u015Bcian, zbieraj dopalacze[i2s_Touch]Unikaj \u015Bcian i wrog\xF3w,
+        zbieraj dopalacze"
       - "\u0418\u0437\u0431\u0435\u0433\u0430\u0439\u0442\u0435 \u0441\u0442\u0435\u043D,
-        \u043F\u043E\u0434\u0431\u0438\u0440\u0430\u0439\u0442\u0435 \u0431\u0443\u0441\u0442\u0435\u0440\u044B"
+        \u043F\u043E\u0434\u0431\u0438\u0440\u0430\u0439\u0442\u0435 \u0431\u0443\u0441\u0442\u0435\u0440\u044B[i2s_Touch]\u0418\u0437\u0431\u0435\u0433\u0430\u0439\u0442\u0435
+        \u0441\u0442\u0435\u043D \u0438 \u0432\u0440\u0430\u0433\u043E\u0432, \u043F\u043E\u0434\u0431\u0438\u0440\u0430\u0439\u0442\u0435
+        \u0431\u0443\u0441\u0442\u0435\u0440\u044B"
       - "\u10DB\u10DD\u10D4\u10E0\u10D8\u10D3\u10D4\u10D7 \u10D9\u10D4\u10D3\u10DA\u10D4\u10D1\u10E1,
+        \u10D0\u10D8\u10E6\u10D4\u10D7 \u10D2\u10D0\u10DB\u10D0\u10EB\u10DA\u10D8\u10D4\u10E0\u10D4\u10D1\u10DA\u10D4\u10D1\u10D8[i2s_Touch]\u10DB\u10DD\u10D4\u10E0\u10D8\u10D3\u10D4\u10D7
+        \u10D9\u10D4\u10D3\u10DA\u10D4\u10D1\u10E1 \u10D3\u10D0 \u10DB\u10E2\u10E0\u10D4\u10D1\u10E1,
         \u10D0\u10D8\u10E6\u10D4\u10D7 \u10D2\u10D0\u10DB\u10D0\u10EB\u10DA\u10D8\u10D4\u10E0\u10D4\u10D1\u10DA\u10D4\u10D1\u10D8"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: You have passed the maze
+      TermType: 0
+      Description: 
+      Languages:
+      - Great job[i2s_Touch]You have passed the maze
+      - Gut gemacht[i2s_Touch]Du hast das Labyrinth passiert
+      - "Bon travail[i2s_Touch]Vous avez pass\xE9 le labyrinthe"
+      - Ottimo lavoro[i2s_Touch]Hai superato il labirinto
+      - Gran trabajo[i2s_Touch]Has pasado el laberinto
+      - "Bom trabalho[i2s_Touch]Voc\xEA passou pelo labirinto"
+      - "Dobra robota[i2s_Touch]Przeszed\u0142e\u015B przez labirynt"
+      - "\u041E\u0442\u043B\u0438\u0447\u043D\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430[i2s_Touch]\u0412\u044B
+        \u043F\u0440\u043E\u0448\u043B\u0438 \u043B\u0430\u0431\u0438\u0440\u0438\u043D\u0442"
+      - "\u1CA7\u10DD\u10E9\u10D0\u10E6[i2s_Touch]\u10D7\u10E5\u10D5\u10D4\u10DC
+        \u10D2\u10D0\u10D8\u10D0\u10E0\u10D4\u10D7 \u10DA\u10D0\u10D1\u10D8\u10E0\u10D8\u10DC\u10D7\u10D8"
       Flags: 000000000000000000
       Languages_Touch: []
     CaseInsensitiveTerms: 0

@@ -24,6 +24,7 @@ namespace Core
 
         private CinemachineBasicMultiChannelPerlin _cbmcp;
         private Animator _animator;
+        private Ring _currentRing;
         private bool _isMoving;
         private bool _ableToTriggerEnter = true;
         private static readonly int Idle = Animator.StringToHash("Idle");
@@ -35,6 +36,7 @@ namespace Core
         public event Action OnDead;
         public event Action OnBusterCollected;
         public event Action<Int32> OnDamaged;
+        public event Action<Ring> OnRingPassed;
 
         public bool IsAlive { get; private set; }
 
@@ -57,19 +59,23 @@ namespace Core
             if (_isMoving && IsAlive) MoveForward();
         }
 
-        private void OnTriggerEnter(Collider other)
+        private async void OnTriggerEnter(Collider other)
         {
             if (!_ableToTriggerEnter) return;
             _ableToTriggerEnter = false;
 
-            if (other.gameObject.GetComponent<Ring>())
+            if (other.gameObject.TryGetComponent(out _currentRing)) // Passed the ring
             {
-                other.GetComponent<Ring>().Break();
                 _ableToTriggerEnter = true;
+                await _currentRing.Break();
+                OnRingPassed?.Invoke(_currentRing);
             }
 
             else if (other.gameObject.layer == WallLayer)
-                TakeDamage(wallDamage).Forget();
+            {
+                _isMoving = false;
+                await TakeDamage(wallDamage);
+            }
 
             else if (other.gameObject.GetComponent<Enemy>())
             {
@@ -80,6 +86,8 @@ namespace Core
             else if (other.gameObject.GetComponent<FinishPlatform>())
             {
                 other.GetComponent<FinishPlatform>().LaunchFireworks();
+                await UniTask.Delay(500);
+                StopRun();
                 OnFinish?.Invoke();
             }
         }

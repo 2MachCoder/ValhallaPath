@@ -19,7 +19,7 @@ namespace Core
             _audioSource = GetComponent<AudioSource>();
         }
 
-        public async void Break()
+        public async UniTask Break()
         {
             _audioSource.Play();
             _animator.SetBool(IsBroken, true);

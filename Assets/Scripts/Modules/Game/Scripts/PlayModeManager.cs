@@ -22,7 +22,9 @@ namespace Modules.Game.Scripts
 
         private const float ZOffset = 3.9f;
         private readonly Vector3 _playerSpawnPosition = new(0f, 1f, 2f);
-        private float _rotationSpeed = 30f;
+        private float _rotationSpeed = 5f;
+        private float _finalRingsLenght;
+        private int _ringCounter;
         private LevelSettings _currentLevelSettings;
         private List<Ring> _rings = new();
         public event Action<Int32> OnPlayerDamaged;
@@ -45,21 +47,19 @@ namespace Modules.Game.Scripts
             player.OnDamaged += OnPlayerDamaged;
             player.OnBusterCollected += OnBusterCollected;
             player.OnFinish += OnPlayerWin;
-            GenerateLevel(levelSettings);
+            InitGenerateLevel(levelSettings);
         }
 
-        public void GenerateLevel(LevelSettings levelSettings)
+        public void InitGenerateLevel(LevelSettings levelSettings)
         {
             _currentLevelSettings = levelSettings;
             player.Initialize();
             player.transform.position = _playerSpawnPosition;
+            _finalRingsLenght = 0f;
             
-            if (!_rings.IsEmpty())
-            {
-                Clean();
-            }
+            if (!_rings.IsEmpty()) Clean();
+            finishplatform.gameObject.SetActive(false);
 
-            float finalRingsLenght = 0;
             if (_currentLevelSettings.Rings.Count <= 5)
             {
                 for (int i = 0; i < _currentLevelSettings.Rings.Count; i++)
@@ -68,24 +68,38 @@ namespace Modules.Game.Scripts
                     var currentOffset = ZOffset * i;
                     currentRing.transform.position += new Vector3(0, 0, currentOffset);
                     _rings.Add(currentRing);
-                    finalRingsLenght += currentOffset;
+                    _finalRingsLenght += currentOffset;
                 }
 
-                finishplatform.transform.position = new Vector3(0f, 0f, finalRingsLenght);
+                finishplatform.gameObject.SetActive(true);
+                finishplatform.transform.position = new Vector3(0f, 0f, _finalRingsLenght);
             }
             else
             {
-                Debug.Log("Логика для большого уровня");
+                for (int i = 0; i < 5; i++)
+                {
+                    var currentRing = _ringPool.Spawn(transform.position, _currentLevelSettings.Rings[i]);
+                    var currentOffset = ZOffset * i;
+                    currentRing.transform.position += new Vector3(0, 0, currentOffset);
+                    _rings.Add(currentRing);
+                    _finalRingsLenght += currentOffset;
+                }
+                player.OnRingPassed += OnPlayerPassRing;
             }
-            
+
             ringsSpawn.transform.DORotate(Vector3.zero, 0f);
             RotateRings();
+        }
+
+        private void OnPlayerPassRing(Ring ring)
+        {
+            _ringPool.Despawn(ring);
         }
 
         public void Restart()
         {
             GameStarted = true;
-            GenerateLevel(_currentLevelSettings);
+            InitGenerateLevel(_currentLevelSettings);
         }
 
         private void MovePlayer()
@@ -128,6 +142,11 @@ namespace Modules.Game.Scripts
 
         public void Hide()
         {
+            player.OnDead -= OnPlayerDied;
+            player.OnDamaged -= OnPlayerDamaged;
+            player.OnBusterCollected -= OnBusterCollected;
+            player.OnFinish -= OnPlayerWin;
+
             Clean();
             _currentLevelSettings = null;
             gameObject.SetActive(false);
