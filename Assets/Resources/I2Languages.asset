@@ -224,8 +224,8 @@ MonoBehaviour:
       - Esentato
       - Abandonar
       - Desistir
-      - "Zrezygnowa\u0107 "
-      - "\u041F\u043E\u043A\u0438\u0434\u0430\u0442\u044C"
+      - "Zrezygnowa\u0107 [i2s_Touch]Wyj\u015B\u0107"
+      - "\u041F\u043E\u043A\u0438\u0434\u0430\u0442\u044C[i2s_Touch]\u0412\u044B\u0439\u0442\u0438"
       - "\u10D3\u10D0\u10E2\u10DD\u10D5\u10D0"
       Flags: 000000000000000000
       Languages_Touch: []
@@ -242,22 +242,6 @@ MonoBehaviour:
       - '[i2s_Touch]Zdrowie'
       - "[i2s_Touch]\u0417\u0434\u043E\u0440\u043E\u0432\u044C\u0435"
       - "[i2s_Touch]\u10EF\u10D0\u10DC\u10DB\u10E0\u10D7\u10D4\u10DA\u10DD\u10D1\u10D0"
-      Flags: 000000000000000000
-      Languages_Touch: []
-    - Term: "\u0412\u044B \u0443\u043C\u0435\u0440\u043B\u0438"
-      TermType: 0
-      Description: 
-      Languages:
-      - You lost the ball[i2s_Touch]Dead
-      - Du hast den Ball verloren[i2s_Touch]Du bist gestorben
-      - Tu as perdu le ballon[i2s_Touch]Tu es mort
-      - Hai perso la palla[i2s_Touch]Sei morto
-      - perdiste la pelota[i2s_Touch]moriste
-      - "Voc\xEA perdeu a bola[i2s_Touch]Voc\xEA morreu"
-      - "Zgubi\u0142e\u015B pi\u0142k\u0119[i2s_Touch]Umar\u0142e\u015B"
-      - "\u0412\u044B \u043F\u043E\u0442\u0435\u0440\u044F\u043B\u0438 \u043C\u044F\u0447[i2s_Touch]\u0423\u043C\u0435\u0440"
-      - "\u10D7\u10E5\u10D5\u10D4\u10DC \u10D3\u10D0\u10D9\u10D0\u10E0\u10D2\u10D4\u10D7
-        \u10D1\u10E3\u10E0\u10D7\u10D8[i2s_Touch]\u10E8\u10D4\u10DC \u10DB\u10DD\u10D9\u10D5\u10D3\u10D8"
       Flags: 000000000000000000
       Languages_Touch: []
     - Term: Go through the whole maze!
@@ -318,6 +302,21 @@ MonoBehaviour:
         \u043F\u0440\u043E\u0448\u043B\u0438 \u043B\u0430\u0431\u0438\u0440\u0438\u043D\u0442"
       - "\u1CA7\u10DD\u10E9\u10D0\u10E6[i2s_Touch]\u10D7\u10E5\u10D5\u10D4\u10DC
         \u10D2\u10D0\u10D8\u10D0\u10E0\u10D4\u10D7 \u10DA\u10D0\u10D1\u10D8\u10E0\u10D8\u10DC\u10D7\u10D8"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: You dead
+      TermType: 0
+      Description: 
+      Languages:
+      - You dead
+      - Du bist tot
+      - "Vous \xEAtes mort"
+      - Sei morto
+      - tu muerto
+      - "Voc\xEA morreu"
+      - "Jeste\u015B martwy[i2s_Touch]Jeste\u015B martwy"
+      - "\u0412\u044B \u043C\u0435\u0440\u0442\u0432\u044B[i2s_Touch]\u041F\u043E\u043C\u0435\u0440"
+      - "\u1CA8\u10D4\u10DC \u10DB\u10D9\u10D5\u10D3\u10D0\u10E0\u10D8 \u10EE\u10D0\u10E0"
       Flags: 000000000000000000
       Languages_Touch: []
     CaseInsensitiveTerms: 0

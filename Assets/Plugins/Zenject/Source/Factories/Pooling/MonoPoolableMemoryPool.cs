@@ -76,10 +76,10 @@ namespace Zenject
             }
         }
 
-        protected override void Reinitialize(TParam1 p1, TValue item)
+        protected override void Reinitialize(TParam1 spawn, TValue buster)
         {
-            item.gameObject.SetActive(true);
-            item.OnSpawned(p1);
+            buster.gameObject.SetActive(true);
+            buster.OnSpawned(spawn);
         }
     }
 

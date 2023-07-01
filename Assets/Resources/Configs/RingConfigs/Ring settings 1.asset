@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: Ring settings 1
   m_EditorClassIdentifier: 
   breakableWalls: 0000000001000000
+  withEnemy: 0
+  enemySpawnIndex: 0
+  withBooster: 0
+  boosterSpawnIndex: 0

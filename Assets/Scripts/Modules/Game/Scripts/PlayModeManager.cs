@@ -13,7 +13,7 @@ namespace Modules.Game.Scripts
     {
         [Inject] private Ring.RingPool _ringPool;
         [SerializeField] private FinishPlatform finishplatform;
-        [SerializeField] private Buster buster;
+        [SerializeField] private Booster booster;
 
         public LevelSettings[] levelSettings;
         public Transform ringsSpawn;
@@ -21,10 +21,10 @@ namespace Modules.Game.Scripts
         public bool GameStarted { get; set; }
 
         private const float ZOffset = 3.9f;
+        private const int RingsFieldOfView = 4;
         private readonly Vector3 _playerSpawnPosition = new(0f, 1f, 2f);
         private float _rotationSpeed = 5f;
-        private float _finalRingsLenght;
-        private int _ringCounter;
+        private int _ringsCount;
         private LevelSettings _currentLevelSettings;
         private List<Ring> _rings = new();
         public event Action<Int32> OnPlayerDamaged;
@@ -39,79 +39,76 @@ namespace Modules.Game.Scripts
             MovePlayer();
         }
 
-        public void Initialize(LevelSettings levelSettings)
+        public void Initialize()
         {
             gameObject.SetActive(true);
-            _currentLevelSettings = levelSettings;
             player.OnDead += OnPlayerDied;
             player.OnDamaged += OnPlayerDamaged;
             player.OnBusterCollected += OnBusterCollected;
+            player.OnRingPassed += OnPlayerPassRing;
             player.OnFinish += OnPlayerWin;
-            InitGenerateLevel(levelSettings);
+            InitGenerateLevel();
         }
 
-        public void InitGenerateLevel(LevelSettings levelSettings)
+        public void InitGenerateLevel()
         {
-            _currentLevelSettings = levelSettings;
+            _currentLevelSettings = levelSettings[LevelIndex];
             player.Initialize();
             player.transform.position = _playerSpawnPosition;
-            _finalRingsLenght = 0f;
             
             if (!_rings.IsEmpty()) Clean();
-            finishplatform.gameObject.SetActive(false);
 
-            if (_currentLevelSettings.Rings.Count <= 5)
+            for (_ringsCount = 0; _ringsCount < RingsFieldOfView; _ringsCount++)
             {
-                for (int i = 0; i < _currentLevelSettings.Rings.Count; i++)
-                {
-                    var currentRing = _ringPool.Spawn(transform.position, _currentLevelSettings.Rings[i]);
-                    var currentOffset = ZOffset * i;
-                    currentRing.transform.position += new Vector3(0, 0, currentOffset);
-                    _rings.Add(currentRing);
-                    _finalRingsLenght += currentOffset;
-                }
-
-                finishplatform.gameObject.SetActive(true);
-                finishplatform.transform.position = new Vector3(0f, 0f, _finalRingsLenght);
+                var currentOffset = ZOffset * _ringsCount;
+                
+                var currentRing = _ringPool.Spawn(transform.position, _currentLevelSettings.Rings[_ringsCount]);
+                currentRing.transform.position += new Vector3(0, 0, currentOffset);
+                _rings.Add(currentRing);
             }
-            else
-            {
-                for (int i = 0; i < 5; i++)
-                {
-                    var currentRing = _ringPool.Spawn(transform.position, _currentLevelSettings.Rings[i]);
-                    var currentOffset = ZOffset * i;
-                    currentRing.transform.position += new Vector3(0, 0, currentOffset);
-                    _rings.Add(currentRing);
-                    _finalRingsLenght += currentOffset;
-                }
-                player.OnRingPassed += OnPlayerPassRing;
-            }
-
+            
+            finishplatform.transform.position = new Vector3(0f, 0f, _currentLevelSettings.Rings.Count * ZOffset);
             ringsSpawn.transform.DORotate(Vector3.zero, 0f);
             RotateRings();
-        }
+        }   
 
         private void OnPlayerPassRing(Ring ring)
         {
-            _ringPool.Despawn(ring);
+            if (ring != null)
+            {
+                _ringPool.Despawn(ring);
+                _rings.Remove(ring);
+                
+                if (_ringsCount < _currentLevelSettings.Rings.Count)
+                {
+                    var nextRing = _ringPool.Spawn(transform.position, _currentLevelSettings.Rings[_ringsCount]);
+                    var currentOffset = ZOffset * _ringsCount;
+                    nextRing.transform.position += new Vector3(0f, 0f, currentOffset);
+                    _rings.Add(nextRing);
+                    _ringsCount++;
+                }
+            }
         }
 
         public void Restart()
         {
             GameStarted = true;
-            InitGenerateLevel(_currentLevelSettings);
+            InitGenerateLevel();
         }
 
         private void MovePlayer()
         {
-            if (Input.touchCount > 0 && GameStarted && player.IsAlive)
-            {
-                Touch touch = Input.GetTouch(0);
+            if (Input.touchCount <= 0 || !GameStarted || !player.IsAlive) return;
+            Touch touch = Input.GetTouch(0);
 
-                if (touch.phase == TouchPhase.Began)    
+            switch (touch.phase)
+            {
+                case TouchPhase.Began:
                     player.StartRun();
-                else if (touch.phase is TouchPhase.Ended or TouchPhase.Canceled)
+                    break;
+                case TouchPhase.Ended or TouchPhase.Canceled:
                     player.StopRun();
+                    break;
             }
         }
 
@@ -136,7 +133,6 @@ namespace Modules.Game.Scripts
         private void Clean()
         {
             foreach (var ring in _rings) _ringPool.Despawn(ring);
-            _ringPool.Clear();
             _rings.Clear();
         } 
 
@@ -144,6 +140,7 @@ namespace Modules.Game.Scripts
         {
             player.OnDead -= OnPlayerDied;
             player.OnDamaged -= OnPlayerDamaged;
+            player.OnRingPassed -= OnPlayerPassRing;
             player.OnBusterCollected -= OnBusterCollected;
             player.OnFinish -= OnPlayerWin;
 

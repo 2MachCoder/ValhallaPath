@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Core
@@ -7,10 +6,13 @@ namespace Core
     public class RingSettings : ScriptableObject
     {
         [SerializeField] private int[] breakableWalls;
-        [SerializeField] private Dictionary<int, Enemy> enemies;
+        [SerializeField] private bool withEnemy;
+        [SerializeField] private int enemySpawnIndex;
+        [SerializeField] private bool withBooster;
+        [SerializeField] private int boosterSpawnIndex;
         
         public int[] BreakableWalls => breakableWalls;
-        
-        public Dictionary<int, Enemy> Enemies => enemies;
+        public bool WithBooster => withBooster;
+        public int BoosterSpawnIndex => boosterSpawnIndex;
     }
 }

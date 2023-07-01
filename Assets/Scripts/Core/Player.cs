@@ -11,8 +11,10 @@ namespace Core
     public class Player : MonoBehaviour
     {
         [Inject] private CinemachineVirtualCamera _virtualCamera;
+        [SerializeField] private ParticleSystem immortalParticles;
         private const float ShakeIntensity = 1f;
         private const int ShakeTime = 1000; //milliSeconds
+        private const int ImmortalTime = 4000; //milliSeconds
         private const float DamageBackwardDistance = 1f;
         private const int WallLayer = 3;
         private const int AnimTransitionDuration = 500; // milliSeconds, * 2
@@ -25,6 +27,7 @@ namespace Core
         private CinemachineBasicMultiChannelPerlin _cbmcp;
         private Animator _animator;
         private Ring _currentRing;
+        private bool _isImmortal;
         private bool _isMoving;
         private bool _ableToTriggerEnter = true;
         private static readonly int Idle = Animator.StringToHash("Idle");
@@ -66,22 +69,49 @@ namespace Core
 
             if (other.gameObject.TryGetComponent(out _currentRing)) // Passed the ring
             {
-                _ableToTriggerEnter = true;
                 await _currentRing.Break();
+                _ableToTriggerEnter = true;
                 OnRingPassed?.Invoke(_currentRing);
             }
 
             else if (other.gameObject.layer == WallLayer)
             {
-                _isMoving = false;
-                await TakeDamage(wallDamage);
+                if (!_isImmortal)
+                {
+                    _isMoving = false;
+                    TakeDamage(wallDamage).Forget();
+                }
+                else
+                {
+                    _currentRing = other.gameObject.GetComponentInParent<Ring>();
+                    _currentRing.GetComponent<BoxCollider>().enabled = false;
+                    await _currentRing.Break();
+                    _ableToTriggerEnter = true;
+                    _currentRing.GetComponent<BoxCollider>().enabled = true;
+                    OnRingPassed?.Invoke(_currentRing);
+                }
             }
 
-            else if (other.gameObject.GetComponent<Enemy>())
+            else if (other.gameObject.GetComponent<Booster>())
             {
-                other.GetComponent<Enemy>().AttackPlayer();
-                TakeDamage(enemyDamage).Forget();
+                other.GetComponent<Booster>().Collect();
+                _ableToTriggerEnter = true;
+                BecomeImmortal().Forget();
             }
+            
+            // else if (other.gameObject.GetComponent<Enemy>())
+            // {
+            //     var enemy = other.GetComponent<Enemy>();
+            //     if (!_isImmortal)
+            //     {
+            //         enemy.AttackPlayer();
+            //         TakeDamage(enemyDamage).Forget();
+            //     }
+            //     else
+            //     {
+            //         enemy.Die();
+            //     }
+            // }
             
             else if (other.gameObject.GetComponent<FinishPlatform>())
             {
@@ -125,7 +155,7 @@ namespace Core
         }
 
         #endregion
-
+        
         private async UniTask TakeDamage(int damage)
         {
             Health -= damage;
@@ -144,6 +174,15 @@ namespace Core
             }
         }
 
+        private async UniTask BecomeImmortal()
+        {
+            _isImmortal = true;
+            immortalParticles.Play();
+            await UniTask.Delay(ImmortalTime);
+            immortalParticles.Stop();
+            _isImmortal = false;
+        }
+        
         private async void PlayDeath()
         {
             IsAlive = false;

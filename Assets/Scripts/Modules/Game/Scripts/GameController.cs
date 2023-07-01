@@ -32,7 +32,7 @@ namespace Modules.Game.Scripts
             _levels = _playModeManager.levelSettings;
             _currentLevelSettings = _levels[_playModeManager.LevelIndex];
             SetupEventListeners();
-            _playModeManager.Initialize(_currentLevelSettings);
+            _playModeManager.Initialize();
             _playModeUIView.startPopup.levelNumber.text = (Array.IndexOf(_levels,_currentLevelSettings) + 1).ToString();
             _playModeUIView.Show().Forget();
             await _playModeUIView.startPopup.Show();
@@ -113,18 +113,20 @@ namespace Modules.Game.Scripts
             _playModeUIView.healthUI.SetActive(true);
             _playModeUIView.healthBar.value = 100f;
             _playModeUIView.Show().Forget();
-            _playModeManager.InitGenerateLevel(_currentLevelSettings);
+            _playModeManager.InitGenerateLevel();
             _playModeManager.GameStarted = true;
         }
         #endregion
         
         private void DetermineNextLevelIndex()
         {
-            var levelIndex = Array.IndexOf(_levels, _currentLevelSettings);
-            if (levelIndex == _levels.Length)
+            var levelIndex = _playModeManager.LevelIndex;
+            if (levelIndex + 1 == _levels.Length)
                 levelIndex = 0;
+            else
+                levelIndex++;
             _currentLevelSettings = _levels[levelIndex];
-            _playModeManager.LevelIndex = (byte)levelIndex;
+            _playModeManager.LevelIndex = levelIndex;
         }
 
         public async UniTask Stop() => await _playModeUIView.Hide();
